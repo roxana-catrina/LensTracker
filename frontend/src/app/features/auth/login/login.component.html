@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="brand-header">
+      <div class="icon-circle">
+        <!-- SVG pentru iconița din header (Calendar/ID) -->
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11a3 3 0 100 6 3 3 0 000-6z"></path>
+        </svg>
+      </div>
+      <h1>Len<span class="dot">s</span>Tracker</h1>
+      <p class="subtitle">Monitorizează-ți lentilele de contact</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="email@example.com"
+          [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div class="error-messages" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Emailul este obligatoriu.</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Formatul adresei de email este invalid.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Parolă</label>
+        <div class="password-input-container">
+          <input [type]="hidePassword ? 'password' : 'text'" id="password" formControlName="password" placeholder="••••••••"
+            [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+            <svg *ngIf="hidePassword" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            <svg *ngIf="!hidePassword" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
+          </button>
+        </div>
+        <div class="error-messages" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Parola este obligatorie.</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Parola trebuie să aibă minim 6 caractere.</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="submit-btn">Autentificare</button>
+    </form>
+
+    <div class="register-link">
+      <a href="javascript:void(0)">Nu ai cont? Înregistrează-te</a>
+    </div>
+  </div>
+</div>
