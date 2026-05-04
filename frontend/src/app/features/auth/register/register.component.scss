@@ -1,0 +1,228 @@
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #eef2ff; /* Fundal foarte deschis */
+  padding: 2rem 1rem;
+}
+
+.register-card {
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+
+  .brand-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .icon-circle {
+      background-color: #5b45ff; /* Mov principal */
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #1a1a2e;
+      font-weight: 700;
+
+      .dot {
+        color: #ff5722;
+      }
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      
+      .half-width {
+        flex: 1;
+        margin-bottom: 0;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 0.5rem;
+      }
+
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        color: #1e293b;
+        outline: none;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+
+        &::placeholder {
+          color: #94a3b8;
+        }
+
+        &:focus {
+          border-color: #5b45ff;
+        }
+
+        &.invalid {
+          border-color: #ef4444;
+        }
+      }
+
+      .password-input-container {
+        position: relative;
+
+        .toggle-password {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: #94a3b8;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            color: #475569;
+          }
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .error-messages {
+        margin-top: 0.25rem;
+        color: #ef4444;
+        font-size: 0.75rem;
+      }
+    }
+
+    .checkbox-group {
+      margin-top: 0.5rem;
+
+      .checkbox-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #334155;
+        cursor: pointer;
+        line-height: 1.4;
+
+        input[type="checkbox"] {
+          margin-top: 0.15rem;
+          accent-color: #475569; /* Pentru fallback browsers */
+        }
+        
+        a {
+          color: #5b45ff;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .error-messages {
+        margin-top: 0.25rem;
+        color: #ef4444;
+        font-size: 0.75rem;
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #5b45ff;
+      color: white;
+      font-weight: 600;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover:not(:disabled) {
+        background-color: #4f3ce6;
+      }
+
+      &:disabled {
+        background-color: #a59bfa;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+
+    a {
+      color: #5b45ff;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register-card {
+    padding: 2rem 1.5rem;
+
+    form .form-row {
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+  }
+}

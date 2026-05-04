@@ -1,0 +1,80 @@
+<div class="add-device-wrapper">
+  <div class="add-device-container">
+    
+    <!-- Header -->
+    <header class="header">
+      <button class="back-btn" (click)="onBack()" aria-label="Înapoi">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+      </button>
+      <div class="title-area">
+        <h1>Adaugă Aparat Nou</h1>
+        <p class="subtitle">Conexiune Bluetooth</p>
+      </div>
+    </header>
+
+    <!-- Info Card -->
+    <div class="info-card">
+      <div class="icon-bluetooth-small">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7l10 10-5 5V2l5 5-10 10"></path>
+        </svg>
+      </div>
+      <div class="info-text">
+        <p class="info-main">Asigură-te că Bluetooth este activat</p>
+        <p class="info-second">Pune aparatul LensCase în modul de împerechere apăsând butonul de conectare timp de 3 secunde.</p>
+      </div>
+    </div>
+
+    <!-- Middle Section: Scan / Results -->
+    <div class="scan-section">
+      <div class="icon-circle-large" [class.scanning]="isScanning">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7l10 10-5 5V2l5 5-10 10"></path>
+        </svg>
+      </div>
+
+      <div class="scan-text">
+        <h2 *ngIf="!deviceFound && !isConnected">Caută aparate</h2>
+        <p *ngIf="!deviceFound && !isConnected && !isScanning">Scanează pentru aparate Bluetooth în apropiere</p>
+        <p *ngIf="isScanning" class="scanning-msg">Căutăm aparate LensCase în apropiere...</p>
+        
+        <h2 *ngIf="deviceFound && !isConnected">Aparat găsit!</h2>
+        <h2 *ngIf="isConnected" class="success-text">Aparatul a fost conectat cu succes!</h2>
+      </div>
+
+      <!-- Action Button or Found Device Card -->
+      <div class="action-area" *ngIf="!isConnected">
+        
+        <!-- Default State or Scanning -->
+        <button *ngIf="!deviceFound" 
+                class="primary-btn" 
+                [disabled]="isScanning" 
+                (click)="startScan()">
+          {{ isScanning ? 'Se scanează...' : 'Pornește Scanarea' }}
+        </button>
+
+        <!-- Device Found State -->
+        <div *ngIf="deviceFound" class="found-device-card">
+          <div class="device-info">
+            <span class="device-name">LensCase Pro</span>
+            <span class="device-status">Status: Găsit</span>
+          </div>
+          <button class="connect-btn" [disabled]="isConnecting" (click)="connectDevice()">
+            {{ isConnecting ? 'Se conectează...' : 'Conectează' }}
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Success Checkmark (Optional visual element when connected) -->
+      <div *ngIf="isConnected" class="success-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      
+    </div>
+  </div>
+</div>
