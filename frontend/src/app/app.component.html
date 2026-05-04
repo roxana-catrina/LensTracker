@@ -1,1 +1,9 @@
-<app-login></app-login>
+@if (currentView === 'login') {
+  <app-login (loginSuccess)="onLogin()" (goToRegister)="onGoToRegister()"></app-login>
+} @else if (currentView === 'register') {
+  <app-register (goToLogin)="onGoToLogin()"></app-register>
+} @else if (currentView === 'devices-list') {
+  <app-devices-list (logout)="onLogout()" (addDevice)="onAddDevice()"></app-devices-list>
+} @else if (currentView === 'add-device') {
+  <app-add-device (goBack)="onBackToDevices()"></app-add-device>
+}

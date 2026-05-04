@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @Output() loginSuccess = new EventEmitter<void>();
+  @Output() goToRegister = new EventEmitter<void>();
   loginForm: FormGroup;
   hidePassword = true;
 
@@ -27,6 +29,12 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       console.log('Date Autentificare:', this.loginForm.value);
+      this.loginSuccess.emit();
     }
+  }
+
+  onGoToRegister(): void {
+    console.log('Navigare la register');
+    this.goToRegister.emit();
   }
 }
